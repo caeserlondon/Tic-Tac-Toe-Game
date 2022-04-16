@@ -1,4 +1,4 @@
-let playerText = document.getElementById("playeText");
+let playerText = document.getElementById("playerText");
 let restartBtn = document.getElementById("restartBtn");
 let boxes = Array.from(document.getElementsByClassName("box"));
 
@@ -28,10 +28,15 @@ function boxClicked(e) {
 		e.target.innerText = currentPlayer;
 
 		if (playerHasWon() !== false) {
-			playerText = `${currentPlayer} has won!`;
+			playerText.innerText = `${currentPlayer} has won!`;
 			let winning_blocks = playerHasWon();
 
-			console.log(winning_blocks);
+			// console.log(winning_blocks);
+
+			winning_blocks.map(
+				(box) => (boxes[box].style.backgroundColor = winningIndicator)
+			);
+			return;
 		}
 
 		currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT;
@@ -67,9 +72,10 @@ function restart() {
 
 	boxes.forEach((box) => {
 		box.innerText = "";
+		box.style.backgroundColor = "";
 	});
 
-	playerText = "Tic Tac Toe";
+	playerText.innerText = "Tic Tac Toe";
 
 	currentPlayer = X_TEXT;
 }
