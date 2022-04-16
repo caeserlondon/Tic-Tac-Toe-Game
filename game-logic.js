@@ -6,21 +6,16 @@ let winningIndicator = getComputedStyle(document.body).getPropertyValue(
 	"--winning-blocks"
 );
 
-// console.log(boxes);
-
 const O_TEXT = "O";
 const X_TEXT = "X";
 let currentPlayer = X_TEXT;
 let spaces = Array(9).fill(null);
-
-// console.log(spaces);
 
 const startGame = () => {
 	boxes.forEach((box) => box.addEventListener("click", boxClicked));
 };
 
 function boxClicked(e) {
-	// console.log(e.target);
 	const id = e.target.id;
 
 	if (!spaces[id]) {
@@ -30,8 +25,6 @@ function boxClicked(e) {
 		if (playerHasWon() !== false) {
 			playerText.innerText = `${currentPlayer} has won!`;
 			let winning_blocks = playerHasWon();
-
-			// console.log(winning_blocks);
 
 			winning_blocks.map(
 				(box) => (boxes[box].style.backgroundColor = winningIndicator)
